@@ -11,6 +11,9 @@ app.use(express.json())
 app.use(logger)
 
 app.use("/songs", songRouter)
+app.use("/", (req, res)=>{
+    res.status(200).send("Welcome to Music Api")
+})
 
 module.exports = app
 
