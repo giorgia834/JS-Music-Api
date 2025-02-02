@@ -20,6 +20,48 @@ async function show(req, res){
     }
 }
 
+async function showGenre(req, res){
+    try{
+        genre = req.params.genre
+        const songs = await Song.getSongsByGenre(genre)
+        res.status(200).json(songs)
+    } catch(err){
+        res.status(404).json({error: err.message})
+    }
+}
+
+async function showYear(req, res){
+    try{
+        console.log("hit")
+        year = req.params.year
+        console.log("hit", year)
+        const songs = await Song.getSongsByDecade(year)
+        res.status(200).json(songs)
+    } catch(err){
+        res.status(404).json({error: err.message})
+    }
+}
+
+async function showDanceability(req, res){
+    try{
+        danceability = req.params.danceability
+        const songs = await Song.getSongsByDanceability(danceability)
+        res.status(200).json(songs)
+    } catch(err){
+        res.status(404).json({error: err.message})
+    }
+}
+
+async function showEnergy(req, res){
+    try{
+        energy = req.params.energy
+        const songs = await Song.getSongsByEnergy(energy)
+        res.status(200).json(songs)
+    } catch(err){
+        res.status(404).json({error: err.message})
+    }
+}
+
 async function create(req, res){
     try{
         data = req.body
@@ -56,4 +98,4 @@ async function update(req, res){
 }
 
 
-module.exports = {index, show, create, destroy, update}
+module.exports = {index, show, showGenre, showYear, showDanceability, showEnergy, create, destroy, update}
